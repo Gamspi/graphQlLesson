@@ -3,7 +3,9 @@ const {graphqlHTTP} = require('express-graphql')
 const cors = require('cors')
 const schema = require('./schema')
 const users = [
-	{id: 1, username: 'name', age: 23}
+	{id: 1, username: 'leo', age: 23},
+	{id: 2, username: 'Nikolay', age: 23},
+	{id: 3, username: 'Anna', age: 23},
 ]
 const PORT = 5000
 const app = express()
@@ -20,7 +22,7 @@ const root = {
 		return users
 	},
 	getUser: ({id}) => {
-		return users.find(user => user.id === id)
+		return users.find(user => user.id === +id)
 	},
 	createUser: ({input}) => {
 		const user = createUser(input)
